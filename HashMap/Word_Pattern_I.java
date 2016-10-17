@@ -1,3 +1,7 @@
+
+import java.util.HashMap;
+import java.util.Objects;
+
 /*Given a pattern and a string str, find if str follows the same pattern.
 
 Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in str.
@@ -14,12 +18,15 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
 */
 
 /*Data structure: HashMap
-  Alogorithm: Solution 1: To make sure that each character in pattern is bijective to word in str, do this with two hashmap,
-  in hashmap1, key: character; in hashmap2, key: word.
-              Solution 2: Make use of return value of put(). 
+  Alogorithm: Solution 1: To make sure that each character in pattern is bijective to word in str, do this with two hashmaps,
+  in hashmap1, key: character, value: word; in hashmap2, key: word, value: character. 
+              Time Complexity : O(N * M)    N = pattern.length(), M = max(str[i].length())
+
+              Solution 2: Make use of return value of put() with only one hashmap. 
+              Time Complexity : O(N) 
 */
 
-public class WordPattern {
+public class Word_Pattern_I {
     public boolean wordPattern(String pattern, String str) {
         String[] des = str.split(" ");
         if (des.length != pattern.length()) {
@@ -60,3 +67,37 @@ public class WordPattern {
             return true;
     }
 }
+class Word_Pattern_I2 {
+    public boolean wordPattern(String pattern, String str) {
+        String[] des = str.split(" ");
+        if (des.length != pattern.length()) {
+            return false;
+        }
+        HashMap hmap = new HashMap<>();
+        //HashMap<String, Character> hmap2 = new HashMap<>();
+        for (int i = 0; i < pattern.length(); i++) {
+            if (!Objects.equals(hmap.put(des[i], i), hmap.put(pattern.charAt(i), i))) {
+                return false;
+            }
+    }
+    return true;
+}
+}
+/*Notes:
+ 1. What's the time comlexity of Objects.euqals(), as class String extends class Object, how about overriden function 
+    in String?
+    corner cases:  
+    String Strii = "STR STR";
+    String[] st = Strii.split(" ");
+    System.out.println(st[0] == (st[1]));  //false because different reference
+    System.out.println(st[0].equals(st[1])); //true because same value
+    String[] st2 = {"STR", "STR"};
+    System.out.println(st2[0] == (st[1])); //true because same in string pool
+
+ 2. Review String.toCharArray() and String.split()
+    char[] ch = "".toCharArray();
+    String test = "";
+    String[] st = test.split(" ");
+    System.out.println(ch.length == 0);
+\   System.out.println(st.length == 0);
+*/
