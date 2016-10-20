@@ -98,6 +98,6 @@ class Word_Pattern_I2 {
     char[] ch = "".toCharArray();
     String test = "";
     String[] st = test.split(" ");
-    System.out.println(ch.length == 0);
-\   System.out.println(st.length == 0);
+    System.out.println(ch.length == 0); //true
+\   System.out.println(st.length == 0); //flase, because st contains one element with length of 0
 */
