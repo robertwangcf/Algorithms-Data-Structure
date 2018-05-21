@@ -1,4 +1,4 @@
-/*Given a string and a number k, find the k’th non-repeating character in the string. 
+package String;/*Given a string and a number k, find the k’th non-repeating character in the string.
 Consider a large input string with lacs of characters and a small character set. How to find the character by only doing only one traversal of input string?
 
 Examples:
@@ -9,7 +9,7 @@ First non-repeating character is f,
 second is o and third is r.
 */
 
-//s1, using two for loops, for every character, check its time of appearance and find the kth character with 1 time appearance  
+//s1, using two for loops, for every character, check its time of appearance and find the kth character with 1 time appearance
 //Time: O(n^2)
 //Space: O(1)
 

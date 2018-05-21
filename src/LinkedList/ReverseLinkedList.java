@@ -1,3 +1,4 @@
+package LinkedList;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +11,7 @@ public class ReverseLinkedList {
     //this is the list for reversing
     
     public Node reverseLinkedList(Node head) {
+        
         Node prev = null;
         Node next;
         while (head != null) {

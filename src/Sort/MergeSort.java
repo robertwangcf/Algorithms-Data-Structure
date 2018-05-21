@@ -2,7 +2,7 @@ package Sort;
 
 import java.util.Arrays;
 
-class Solution {
+public class MergeSort {
     public static void main(String args[]) {
         //for testing only
         int test[] = {3,2,1,4,5};
