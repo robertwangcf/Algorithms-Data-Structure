@@ -4,15 +4,6 @@ package Tree;
 
         Note: If the given node has no in-order successor in the tree, return null.*/
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode (int x) {
-        val = x;
-    }
-}
-
 public class InorderSuccessor{
     public static void main(String[] args) {
         TreeNode n1 = new TreeNode(1);

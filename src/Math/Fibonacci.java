@@ -7,7 +7,9 @@ package Math;
 public class Fibonacci {
     public static void main(String args[]) {
         //for testing only
-        System.out.println(fibonacci(16));
+        //System.out.println(fibonacci(16));
+        String i = "a b c";
+        System.out.print(i.replaceAll(" ", "  "));
     }
 
     public static int fibonacci(int n) {

@@ -82,18 +82,7 @@ public class LRUCache {
 
 }
 
-class ListNode {
-    ListNode pre;
-    ListNode next;
-    int val;
-    int key;
-    public ListNode(int val, int key) {
-        this.val = val;
-        this.key = key;
-        pre = null;
-        next = null;
-    }
-}
+
 
 /**
  * Your LRUCache object will be instantiated and called as such:

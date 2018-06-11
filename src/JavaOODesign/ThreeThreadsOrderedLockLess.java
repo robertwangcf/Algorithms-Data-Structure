@@ -1,11 +1,15 @@
 package JavaOODesign;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executor;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Question: print out numbers in sequence with different thread
@@ -29,11 +33,12 @@ public class ThreeThreadsOrderedLockLess {
         ts1.start();
         ts2.start();
         ts3.start();
-        List<Integer> l = new ArrayList<>(0);
+
 
     }
 
     private class MyThread implements Runnable{
+        private ReentrantLock lock;
         private final int threadPosition;
         public MyThread(int threadPosition) {
             super();
@@ -42,13 +47,36 @@ public class ThreeThreadsOrderedLockLess {
 
         @Override
         public void run() {
-            while (sharedOutput.get() < 5) {
-                synchronized (object) {
-                    System.out.println(Thread.currentThread()+"  "+
-                            sharedOutput.incrementAndGet());
+            try {
+                lock.lock();
+                while (sharedOutput.get() < 5) {
+                    synchronized (object) {
+                        System.out.println(Thread.currentThread()+"  "+
+                                sharedOutput.incrementAndGet());
+                    }
                 }
+            } finally {
+                lock.unlock();
             }
+
         }
     }
+
+   /* private class SerialExecutor implements Executor {
+        final Queue<MyThread> tasks = new ArrayDeque<>();
+        Runnable active;
+        public synchronized void execute(final Runnable r) {
+            MyThread r1 = tasks.poll();
+             tasks.offer(r1);
+
+            try
+            {
+                r1.run();
+            } finally {
+                scheduleNext();
+            }
+
+        }
+    }*/
 }
 
